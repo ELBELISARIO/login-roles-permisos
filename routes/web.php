@@ -10,12 +10,15 @@ use App\Http\Controllers\SessionsController;
 Route::get('/', function () {
     //Se sustituyó la ruta por default de welcome por la nueva página que se creó (home.blade.php)
     return view('home');
-})->middleware('auth');
+})->middleware('auth'); //Midleware para que no permita ir a la página principal sin antes loguearse.
+//Nota: El middleware se configura aquí y en el archivo Authenticate.php
+
 
 //Enrutamiento de controladores con vistas
 //El usuario ingresa la url (/register u otro), la url lo enlaza al controlador(RegisterController u otro) mediante el método definido(create u otro) y el método returna algo en este caso una vista.
-Route::get('/register', [RegisterController::class, 'create'])->name('register.index');
-Route::get('/login', [SessionsController::class, 'create'])->name('login.index');
+//Middleware para que estando logueado no permita ir a registro o a loguin.
+Route::get('/register', [RegisterController::class, 'create'])->middleware('guest')->name('register.index');
+Route::get('/login', [SessionsController::class, 'create'])->middleware('guest')->name('login.index');
 
 
 //Ojo los name .store de ambas rutas en este caso no se utilizan se accede a los métodos gracias  al método POST que indica que el formulario lleva datos.
@@ -28,4 +31,7 @@ Route::post('/login', [SessionsController::class, 'store'])->name('login.store')
 
 //Enrutamiento de app.blade.php con el método destroy de SessionsController
 //Nota: La /logout no se ocupa... Se accede al método destroy por el name login.destroy de la view home.blade.php
-Route::get('/logout', [SessionsController::class, 'destroy']) ->middleware('auth') ->name('login.destroy');
+//En este punto el middleware se reinicia con el auth porque se destruye la sesión. Nota el middleware se configura aquí y en el archivo RedirectifAuthenticated
+Route::get('/logout', [SessionsController::class, 'destroy'])->middleware('auth')->middleware('auth')->name('login.destroy');
+
+
