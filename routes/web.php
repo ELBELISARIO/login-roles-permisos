@@ -11,3 +11,4 @@ Route::get('/', function () {
     //Se sustituyó la ruta por default de welcome por la nueva página que se creó (home.blade.php)
     return view('home');
 });
+
