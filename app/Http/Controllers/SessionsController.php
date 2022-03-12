@@ -13,6 +13,7 @@ class SessionsController extends Controller
         return view('auth.login');
     }
 
+    //Método de logueo.
     public function store() {
         
         if(auth()->attempt(request(['email', 'password'])) == false) {
@@ -24,5 +25,11 @@ class SessionsController extends Controller
         return redirect()->to('/');
     }
 
-    
+    //Método para cerrar la sesión y nos lleva a la página de inicio.
+    public function destroy() {
+
+        auth()->logout();
+
+        return redirect()->to('/');
+    }
 }

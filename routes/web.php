@@ -17,9 +17,15 @@ Route::get('/', function () {
 Route::get('/register', [RegisterController::class, 'create'])->name('register.index');
 Route::get('/login', [SessionsController::class, 'create'])->name('login.index');
 
+
+//Ojo los name .store de ambas rutas en este caso no se utilizan se accede a los métodos gracias  al método POST que indica que el formulario lleva datos.
 //Enrutamiento de register.blade.php con el método store RegisterController
-//Los datos que trae register.blade.php los manda al método store. 
+//Los datos que trae register.blade.php los manda al método store.
 Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 //Enrutamiento de login.blade.php con método store de SessionController.
 Route::post('/login', [SessionsController::class, 'store'])->name('login.store');
 
+
+//Enrutamiento de app.blade.php con el método destroy de SessionsController
+//Nota: La /logout no se ocupa... Se accede al método destroy por el name login.destroy de la view home.blade.php
+Route::get('/logout', [SessionsController::class, 'destroy']) ->middleware('auth') ->name('login.destroy');
