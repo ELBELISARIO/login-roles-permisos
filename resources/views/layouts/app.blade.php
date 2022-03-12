@@ -31,8 +31,7 @@
                 </li>
                 <li> <a href=" " class="font-bold py-3 px-4 rounded-md bg-red-500 hover:bg-red-600">Log Out</a></li>
 
-                <li class="mx-6"> <a href="{{route('login.index')}}" class="font-semibold hover:bg-indigo-700 py-3 px-4 rounded-md">Log
-                        In</a> </li>
+                <li class="mx-6"> <a href="{{route('login.index')}}" class="font-semibold hover:bg-indigo-700 py-3 px-4 rounded-md">Log In</a> </li>
                 <li> <a href="{{route('register.index')}}"
                         class="font-semibold border-2 border-white py-2 px-4 rounded-md hover:bg-white hover:text-indigo-700">Register</a>
                 </li>

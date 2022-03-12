@@ -19,5 +19,7 @@ Route::get('/login', [SessionsController::class, 'create'])->name('login.index')
 
 //Enrutamiento de register.blade.php con el método store RegisterController
 //Los datos que trae register.blade.php los manda al método store. 
-Route::post('/register', [RegisterController::class, 'store'])
-    ->name('register.store');
+Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+//Enrutamiento de login.blade.php con método store de SessionController.
+Route::post('/login', [SessionsController::class, 'store'])->name('login.store');
+
