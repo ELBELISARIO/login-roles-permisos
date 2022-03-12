@@ -12,3 +12,7 @@ Route::get('/', function () {
     return view('home');
 });
 
+//Enrutamiento de controladores con vistas
+//El usuario ingresa la url (/register u otro), la url lo enlaza al controlador(RegisterController u otro) mediante el método definido(create u otro) y el método returna algo en este caso una vista.
+Route::get('/register', [RegisterController::class, 'create'])->name('register.index');
+Route::get('/login', [SessionsController::class, 'create'])->name('login.index');
