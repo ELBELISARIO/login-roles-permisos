@@ -10,7 +10,7 @@ use App\Http\Controllers\SessionsController;
 Route::get('/', function () {
     //Se sustituyó la ruta por default de welcome por la nueva página que se creó (home.blade.php)
     return view('home');
-});
+})->middleware('auth');
 
 //Enrutamiento de controladores con vistas
 //El usuario ingresa la url (/register u otro), la url lo enlaza al controlador(RegisterController u otro) mediante el método definido(create u otro) y el método returna algo en este caso una vista.
